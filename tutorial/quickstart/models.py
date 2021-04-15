@@ -5,6 +5,10 @@ class Tariffs(models.Model):
     info_id = models.AutoField(primary_key=True)
     type_name = models.CharField(max_length=255)
 
+    class Meta:
+        db_table = 'tariffs'
+        managed = False
+
     def __str__(self):
         return self.type_name
 
@@ -12,6 +16,10 @@ class Tariffs(models.Model):
 class States(models.Model):
     info_id = models.AutoField(primary_key=True)
     state = models.CharField(max_length=255)
+
+    class Meta:
+        db_table = 'states'
+        managed = False
 
     def __str__(self):
         return self.state
@@ -25,6 +33,10 @@ class Users(models.Model):
     account = models.TextField(null=True, blank=True)
     state = models.ForeignKey(States, null=True, on_delete=models.SET_NULL)
     type = models.ForeignKey(Tariffs, null=True, on_delete=models.SET_NULL)
+
+    class Meta:
+        db_table = 'users'
+        managed = False
 
     def __str__(self):
         return f"{self.family_name} {self.first_name}"
